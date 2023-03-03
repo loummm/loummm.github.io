@@ -32,12 +32,11 @@ jobs:
     - name: Install dependencies
       run: make
     - name: Commit
-      run: |
-        git config user.name github-actions[bot]
-        git config user.email github-actions[bot]@users.noreply.github.com
-        git add -A
-        git commit -m "Update data" -a || exit 0
-        git push
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: 'Update File'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # Single deploy job since we're just deploying
   deploy:
     needs: build
