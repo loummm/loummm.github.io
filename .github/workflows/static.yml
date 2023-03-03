@@ -13,11 +13,9 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   actions: write
-  deployments: write
   contents: write
   pages: write
   id-token: write
-  pull-requests: write
 
 # Allow one concurrent deployment
 concurrency:
@@ -39,7 +37,7 @@ jobs:
       with:
         commit_message: 'Update File'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
   # Single deploy job since we're just deploying
   deploy:
     needs: build
